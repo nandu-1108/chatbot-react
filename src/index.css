@@ -1,0 +1,164 @@
+/* ===== Your original chat styles ===== */
+
+.send-button {
+  background-color: rgb(124, 4, 92);
+  color: whitesmoke;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  margin-left: 10px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.input-text {
+  padding: 12px 15px;
+  height: 50px;
+  width: 500px;
+  border-radius: 10px;
+  font-size: 15px;
+  flex-grow: 1;
+}
+
+.chat-input-container {
+  display: flex;
+  margin-bottom: 60px;
+}
+
+.app-container {
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.chat-message-user {
+  display: flex;
+  justify-content: end;
+  padding-top: 30px;
+}
+
+.chat-message-robot {
+  display: flex;
+  align-items: start;
+}
+
+.chatbot-text {
+  background-color: rgb(231, 228, 228);
+  border-radius: 6px;
+  padding: 12px 20px;
+  margin-right: 10px;
+  margin-left: 10px;
+  margin-bottom: 20px;
+  max-width: 420px;
+  white-space: pre-wrap; /* keeps the line breaks of the analysis report */
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.chat-profile {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.user-profile {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.chat-messages-container {
+  flex-grow: 1;
+  margin-top: 20px;
+  overflow: scroll;
+  scrollbar-width: none;
+  scroll-behavior: auto;
+}
+
+.empty-chat {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  color: rgb(134, 134, 132);
+}
+
+/* ===== New design styles ===== */
+
+body {
+  background: linear-gradient(135deg, #f3e8ff, #fdf4ff);
+}
+
+.app-container {
+  background: white;
+  padding: 0 16px;
+  box-shadow: 0 0 20px rgba(124, 4, 92, 0.15);
+}
+
+.app-header {
+  text-align: center;
+  padding: 16px 0 10px;
+  border-bottom: 1px solid #eee;
+  color: rgb(124, 4, 92);
+}
+
+.app-header h2 {
+  margin: 0;
+}
+
+.app-header p {
+  margin: 4px 0 0;
+  font-size: 14px;
+  color: #777;
+}
+
+.chat-message-user .chatbot-text {
+  background-color: rgb(124, 4, 92);
+  color: whitesmoke;
+}
+
+.input-text {
+  border: 1px solid #ccc;
+}
+
+.resume-form {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 12px;
+  font-size: 14px;
+  white-space: normal;
+}
+
+.resume-form label {
+  font-weight: bold;
+  margin-top: 6px;
+}
+
+.form-field {
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.form-error {
+  color: #c00;
+  margin: 4px 0 0;
+}
+
+.resume-form .send-button {
+  margin-left: 0;
+  margin-top: 10px;
+}

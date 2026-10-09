@@ -1,88 +1,53 @@
-import React from 'react'
-import './chatbot.css'
+import { useState } from 'react';
+import { bot } from '../resumeBot';
 
-const Chatinput = ({ chatmessages, setChatMessages }) => {
-  const [InputText, setInputText] = React.useState('');
+function ChatInput({ setChatMessages }) {
+  const [inputText, setInputText] = useState('');
 
-  function saveInputText(event) {
-    setInputText(event.target.value);
-  }
+  async function sendMessage() {
+    const text = inputText.trim();
+    if (!text) return;
 
-  function getBotReply(text) {
-
-  const message = text.toLowerCase().trim();
-
-  if (message.includes("hello") || message.includes("hi")) {
-    return "Hello Dear 👋";
-  }
-
-  if (message.includes("i need help")) {
-    return "I am Here to Help You 🙌";
-  }
-
-  if (message.includes("i want to learn programming")) {
-    return "That's Great! Programming is a Valuable skill 💻";
-  }
-
-  if (message.includes("i want to learn python")) {
-    return "Python is a great choice! It's beginner-friendly 🐍";
-  }
-
-  if (message.includes("how can i start")) {
-    return "Start with basics like variables, loops, and functions.";
-  }
-
-  if (message.includes("thank you")) {
-    return "It's my Pleasure to Help You Dear 🥰";
-  }
-
-  return "Sorry 😅 I didn't understand that.";
-}
-
-  function sendMessage() {
-
-    if (!InputText.trim()) return;
-
-    const userMessage = {
-      messege: InputText,
-      sender: 'user',
-      id: crypto.randomUUID()
-    };
-
-    setChatMessages(prev => [...prev, userMessage]);
-
-    const userText = InputText;
     setInputText('');
 
-    setTimeout(() => {
+    // 1. show the student's message
+    setChatMessages((prev) => [
+      ...prev,
+      { message: text, sender: 'user', id: crypto.randomUUID() },
+    ]);
 
-      const botMessage = {
-        messege: getBotReply(userText),
+    // 2. get the bot's reply (an object: { message, showForm })
+    const reply = await bot.getResponse(text);
+
+    // 3. show the bot's reply, with the form if needed
+    setChatMessages((prev) => [
+      ...prev,
+      {
+        message: reply.message,
         sender: 'robot',
-        id: crypto.randomUUID()
-      };
-
-      setChatMessages(prev => [...prev, botMessage]);
-
-    }, 1500);
+        type: reply.showForm ? 'form' : 'text',
+        id: crypto.randomUUID(),
+      },
+    ]);
   }
 
   return (
-    <div className='chat-input-container'>
+    <div className="chat-input-container">
       <input
-        type="text"
-        placeholder='Ask me anything that you want to know'
-        onChange={saveInputText}
-        value={InputText}
-        className='input-text'
-        onKeyDown={(e) => e.key === "Enter" && sendMessage()}
+        id="chat-input"
+        name="chatMessage"
+        className="input-text"
+        value={inputText}
+        onChange={(e) => setInputText(e.target.value)}
+        onKeyDown={(e) => e.key === 'Enter' && sendMessage()}
+        placeholder="Type a message..."
+        autoComplete="off"
       />
-
-      <button className='send-button' onClick={sendMessage}>
+      <button className="send-button" onClick={sendMessage}>
         Send
       </button>
     </div>
-  )
+  );
 }
 
-export default Chatinput
+export default ChatInput;
